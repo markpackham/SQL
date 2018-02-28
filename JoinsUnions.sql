@@ -22,3 +22,29 @@ SELECT rank FROM role ORDER BY rank;
 --UNION ALL allows duplicate values, you may get more results that you want
 SELECT rank FROM staff UNION ALL
 SELECT rank FROM role ORDER BY rank;
+
+--Joins using actual database travcrashcourse
+SELECT customers.firstName, customers.lastName, orders.orderNumber FROM customers
+INNER JOIN orders ON
+customers.id = orders.customerId
+ORDER BY customers.lastName;
+
+SELECT customers.firstName, customers.lastName,
+orderNumber, orders.orderDate
+FROM customers
+LEFT JOIN orders ON customers.id = orders.customerId
+ORDER BY customers.lastName;
+
+SELECT orders.orderNumber, customers.firstName, customers.lastName
+FROM orders
+RIGHT JOIN customers ON orders.customerId = customers.id
+ORDER BY orders.orderNumber;
+
+SELECT orders.orderNumber, customers.firstName, customers.lastName, products.name
+FROM orders
+INNER JOIN products
+ON orders.productId = products.id
+INNER JOIN customers
+ON orders.customerId = customers.id
+ORDER BY orders.orderNumber;
+
