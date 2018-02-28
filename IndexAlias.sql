@@ -20,3 +20,6 @@ SELECT CONCAT(firstName, ' ',lastName) AS 'Name', CONCAT(address,' ',city,' ',st
 --Short lazy alias to save you from writing full table names out
 SELECT o.id, o.orderDate, c.firstName, c.lastName
 FROM customers AS c, orders As o;
+
+--show only first name in all upper case while last name in lower case
+SELECT UCASE(firstName), LCASE(lastName) FROM customers
