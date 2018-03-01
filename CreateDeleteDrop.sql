@@ -28,3 +28,6 @@ TRUNCATE TABLE a_non_existent_table;
 
 --DROP table destorys the table
 DROP TABLE a_non_existent_table;
+
+--DROP VIEW
+DROP VIEW a_non_existent_view;
