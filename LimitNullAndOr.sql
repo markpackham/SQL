@@ -1,3 +1,7 @@
+--Only show 3 customers
+SELECT * FROM customers
+LIMIT 3;
+
 --AND will only give results if both criteria are true, this will fail
 SELECT firstName FROM customers
 WHERE state='New York' AND state='Planet Earth';
