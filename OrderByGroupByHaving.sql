@@ -18,6 +18,7 @@ WHERE age > 30
 GROUP BY age;
 
 --only show me non unique ages see 2 or more time that are older than 3
+--think of HAVING as WHERE but used for aggregate data
 SELECT age, COUNT(age)
 FROM customers
 WHERE age > 30
