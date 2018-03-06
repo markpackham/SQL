@@ -1,3 +1,6 @@
+Material learn from https://www.youtube.com/watch?v=yPu6qV5byu4
+And taken from http://www.newthinktank.com/2014/08/mysql-video-tutorial/
+
 1. Login to MySQL 
  
  	a. mysql5 -u mysqladmin -p
