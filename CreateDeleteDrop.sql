@@ -31,3 +31,7 @@ DROP TABLE a_non_existent_table;
 
 --DROP VIEW
 DROP VIEW a_non_existent_view;
+
+--DROP table colum
+ALTER TABLE dropping_table
+DROP COLUMN dropping_colum;
