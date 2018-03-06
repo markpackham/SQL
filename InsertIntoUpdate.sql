@@ -7,3 +7,8 @@ INSERT INTO `customers` (`id`, `firstName`, `lastName`, `email`, `address`, `cit
 (6, 'Dave', 'Smith', 'dave@gmail.com', '2 raindow valley', 'Austin', 'Texas', '01451', 56),
 (7, 'AJ', 'Styles', 'aj@gmail.com', '619 impact st', 'Gainsville', 'Georgia', '1998', 56),
 (8, 'Timmy', 'Jenkins', 'tim@hotmail.com', '32 Acacia Avenue', 'Landrum', 'Virginia', '3902', 23);
+
+--UPDATE a row
+UPDATE `customers`
+SET lastName = 'Doe'
+WHERE id = 1;
