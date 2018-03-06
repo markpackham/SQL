@@ -1,16 +1,20 @@
---narrow results, matching values in both tables
+--narrow results, showing ONLY matching values in both tables
+--you'll get less nulls compared to the other joins
 SELECT staff.id, staff.name, role.roleType FROM staff
 INNER JOIN staff ON role.staffId=staff.id;
 
 --focus on staff table, all records from the left table & matches on right
+--often you get nulls on the right
 SELECT staff.id, staff.name, role.roleType FROM staff
 LEFT JOIN staff ON role.staffId=staff.id;
 
 --focus on role table, all records from the right table & matches on left
+--often you get nulls on the left
 SELECT staff.id, staff.name, role.roleType FROM staff
 RIGHT JOIN staff ON role.staffId=staff.id;
 
---increase results, terrible performance, all results where there is a match
+--increase results, terrible performance, all results show even if there are no matches
+--you'll probably see lots of nulls on both sides
 SELECT staff.id, staff.name, role.roleType FROM staff
 FULL OUTER JOIN staff ON role.staffId=staff.id;
 
