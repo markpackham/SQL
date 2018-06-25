@@ -38,3 +38,12 @@ CREATE TABLE orders(
  FOREIGN KEY (customerId) REFERENCES customers(id),
  FOREIGN KEY (productId) REFERENCES products(id)
 ); 
+
+--ALIAS for more human readable column names
+SELECT firstName AS 'First Name' FROM customers;
+
+SELECT o.id, o.orderDate, c.firstName, c.lastName
+FROM customers AS c, orders AS o;
+
+--CONCAT so you get a Name column with names like "John Smith"
+SELECT CONCAT(firstName, '',lastName) AS 'Name' FROM customers;
