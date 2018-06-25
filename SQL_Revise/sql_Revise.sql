@@ -180,12 +180,15 @@ SELECT ISNULL(""); --returns 0, strangely this is not Null
 SELECT ISNULL(NULL); --returns 1
 
 --Time functions
+SELECT ADDTIME("2015-01-01 01:01:01", "1"); --2015-01-01 01:01:02
+SELECT SUBTIME("2015-01-01 01:01:01", "1"); --2015-01-01 01:01:00
 SELECT TIMEDIFF("14:00", "15:00"); -- -01:00:00
 SELECT DATEDIFF("2020-01-01", "2019-01-01"); --difference in days 365
 SELECT NOW(); -- eg 2018-06-25 14:08:01
 SELECT CURRENT_DATE(); --eg 2018-06-25
 SELECT CURTIME(); --eg 14:09:46
 SELECT ADDDATE("2015-01-01", INTERVAL 5 DAY); --5 days are added & we get 2015-01-06
+--use SUBDATE to subtract
 
 --Output to file
 SELECT *
