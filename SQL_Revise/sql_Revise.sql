@@ -46,4 +46,30 @@ SELECT o.id, o.orderDate, c.firstName, c.lastName
 FROM customers AS c, orders AS o;
 
 --CONCAT so you get a Name column with names like "John Smith"
-SELECT CONCAT(firstName, '',lastName) AS 'Name' FROM customers;
+SELECT CONCAT(firstName, '',lastName) AS 'Name'
+FROM customers;
+
+--UCASE, LCASE (upper & lower case)
+SELECT UCASE(firstName), LCASE(lastName) FROM customers;
+
+
+--AVG average
+SELECT AVG(age) FROM customers;
+
+--IFNULL returns an alternative value if an expression is NULL eg 0
+SELECT IFNULL(diploma, 0) FROM customers; --it is possible no customers have academic diplomas
+
+--COUNT, MIN, MAX, SUM
+SELECT COUNT(age) FROM customers;
+SELECT min(age) FROM customers;
+SELECT max(age) FROM customers;
+SELECT SUM(age) FROM customers;
+
+--Only show age range for those greated than 20 if there are 2 or more identical age groups
+--So a single 31 year old person won't show however if there are 2 31 year old persons then the age of
+--31 will show with a COUNT(age) of 2
+SELECT age, COUNT(age)
+FROM customers
+WHERE age >20
+GROUP BY age;
+HAVING COUNT(age)>=2;
