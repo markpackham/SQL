@@ -219,3 +219,10 @@ SELECT * FROM work WHERE work_hours BETWEEN @start AND @finish;
 SET SQL_SAFE_UPDATES=0;
 --Renable safe update mode
 SET SQL_SAFE_UPDATES=1;
+
+--FORMAT, used for rounding
+SELECT FORMAT(199.9999, 2); --200.00
+
+--RAND, random number
+SELECT RAND(14); --generate a random number & use the number 14 as a seed to make it more random
+
