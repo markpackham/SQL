@@ -127,3 +127,20 @@ ADD CONSTRAINT ageRestrict CHECK (age>17 AND country='Wales');
 
 ALTER TABLE customers
 DROP CHECK ageRestrict;
+
+--CAST, Convert a value from one datatype to another datatype:
+SELECT CAST("2018-01-30" AS DATE);
+--CONVERT() would also work as an alternative to CAST()
+
+--Data about the database, return the user name and host name for the current MySQL user:
+SELECT SESSION_USER();
+SELECT SYSTEM_USER();
+SELECT USER();
+
+--Return the user name and host name for the MySQL account:
+SELECT CURRENT_USER();
+
+--Find database version
+SELECT VERSION();
+
+
