@@ -7,11 +7,11 @@ JOIN tableB ON tableA.aID = tableB.foreignKey
 Target colums of the same name
 In MySQL, the NATURAL JOIN is such a join that performs the same task as an INNER or LEFT JOIN, in which the ON or USING clause refers to all columns that the tables to be joined have in common.
 The MySQL NATURAL JOIN is structured in such a way that, columns with the same name of associate tables will appear once only.
- */
+*/
 SELECT aID, names
 FROM tableA
 NATURAL JOIN tableB; --same effect as INNER JOIN above since both tables have an ID column
-
+--avoid NATURAL JOIN & use INNER JOIN, code is far easier to maintain since NATURAL JOIN breaks easily with colum name changes
 
 --BETWEEN/NOT BETWEEN
 SELECT * FROM customers
