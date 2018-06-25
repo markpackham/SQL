@@ -200,3 +200,17 @@ INFILE 'C:\\myFolder\\customers.csv'
 INTO TABLE myDatabase.customers
 FIELDS ENCLOSED BY '"' TERMINATED BY ',' ESCAPE BY '\\' --factor in NULL values
 LINES TERMINATED BY '\r\n';
+
+--Create new table copying data from existing one & limiting it
+CREATE TABLE no_credit
+LIKE myDatabase.customers;
+
+INSERT no_credit
+SELECT *
+FROM customers
+WHERE creditLimit = 0;
+
+--Variables
+SET @start = 9, @finish = 17; -- Both SET or SELECT work as do = or :=
+SELECT @start := 9, @finish := 17;
+SELECT * FROM work WHERE work_hours BETWEEN @start AND @finish;
