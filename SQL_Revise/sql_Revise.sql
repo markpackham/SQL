@@ -3,10 +3,14 @@ SELECT tableA.aID, tableB.names
 FROM tableA
 JOIN tableB ON tableA.aID = tableB.foreignKey
 
---BETWEEN
+--BETWEEN/NOT BETWEEN
 SELECT * FROM customers
 WHERE age
 BETWEEN 5 AND 20;
+
+SELECT * FROM customers
+WHERE age
+NOT BETWEEN 5 AND 20;
 
 --LIKE/NOT LIKE with wildcard
 SELECT * FROM customers
@@ -46,7 +50,7 @@ SELECT o.id, o.orderDate, c.firstName, c.lastName
 FROM customers AS c, orders AS o;
 
 --CONCAT so you get a Name column with names like "John Smith"
-SELECT CONCAT(firstName, '',lastName) AS 'Name'
+SELECT CONCAT(firstName, '-',lastName) AS 'Name'
 FROM customers;
 
 --UCASE, LCASE (upper & lower case)
@@ -73,3 +77,53 @@ FROM customers
 WHERE age >20
 GROUP BY age;
 HAVING COUNT(age)>=2;
+
+
+--DEFAULT
+CREATE TABLE customers(
+id int NOT NULL AUTO_INCREMENT,
+name city varchar (255),
+city varchar (255) DEFAULT 'Basingstoke'
+);
+
+ALTER TABLE customers
+ALTER city DROP DEFAULT;
+
+
+--VIEWS they contain no actual data they are just showing off data from another table
+--This is a a temporary table that updates dynamically
+CREATE VIEW my_view AS
+SELECT id, name
+FROM customers
+WHERE id > 20;
+
+DROP VIEW my_view;
+
+
+--The EXISTS operator is used to test for the existence of any record in a subquery.
+--The EXISTS operator returns true if the subquery returns one or more records.
+SELECT name
+FROM customers
+WHERE EXISTS (SELECT age FROM customers WHERE age >50);
+
+--The SELECT INTO statement copies data from one table into a new table.
+SELECT * INTO customersBackup
+FROM customers
+
+
+--CHECK (constraint to prevent unwanted data entering table)
+CREATE TABLE Persons (
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(255),
+    age int,
+    CHECK (age>=17)
+);
+
+ALTER TABLE customers
+ADD CHECK (age>17);
+
+ALTER TABLE customers
+ADD CONSTRAINT ageRestrict CHECK (age>17 AND country='Wales');
+
+ALTER TABLE customers
+DROP CHECK ageRestrict;
