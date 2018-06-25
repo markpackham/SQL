@@ -70,9 +70,6 @@ SELECT UCASE(firstName), LCASE(lastName) FROM customers;
 --AVG average
 SELECT AVG(age) FROM customers;
 
---IFNULL returns an alternative value if an expression is NULL eg 0
-SELECT IFNULL(diploma, 0) FROM customers; --it is possible no customers have academic diplomas
-
 --COUNT, MIN, MAX, SUM
 SELECT COUNT(age) FROM customers;
 SELECT min(age) FROM customers;
@@ -150,6 +147,9 @@ SELECT USER();
 --Return the user name and host name for the MySQL account:
 SELECT CURRENT_USER();
 
+--Return the unique connection ID for the current connection:
+SELECT CONNECTION_ID();
+
 --Find database version
 SELECT VERSION();
 
@@ -167,3 +167,14 @@ SELECT SUBSTR("abcdefghi", 4, 2) AS aSubstring; -- gives ef
 SELECT STRCMP("longerString", "shortString"); -- -1
 SELECT STRCMP("sameLength","sameLength"); -- 0
 SELECT STRCMP("shortString", "longerString"); -- 1
+
+--IF condition
+SELECT IF(100000>2, "YES", "NO"); --returns YES
+
+--IFNULL returns an alternative value if an expression is NULL eg 0
+SELECT IFNULL(diploma, 0) FROM customers; --it is possible no customers have academic diplomas
+
+--ISNULL If expression is a NULL value, the ISNULL() function returns 1. Otherwise, it returns 0.
+SELECT ISNULL("Return 0 I am not null"); --returns 0
+SELECT ISNULL(""); --returns 0, strangely this is not Null
+SELECT ISNULL(NULL); --returns 1
