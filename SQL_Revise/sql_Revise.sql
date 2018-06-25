@@ -153,4 +153,17 @@ SELECT CURRENT_USER();
 --Find database version
 SELECT VERSION();
 
+--GREATEST & LEAST returns the greatest/least value in a list of expressions
+SELECT GREATEST(3, 12, 34, 8, 25); --34
+SELECT LEAST(3, 12, 34, 8, 25); --3
 
+--LOCATE, find position of value targeted
+SELECT LOCATE("a", "Mark") AS customers; --returns 2
+
+--SUBSTR (substring which is identical to SUBSTRING & MID)
+SELECT SUBSTR("abcdefghi", 4, 2) AS aSubstring; -- gives ef
+
+--STRCMP compares string lengths, -1 means first string longer, 0 means identical length & 1 means 2nd string longer
+SELECT STRCMP("longerString", "shortString"); -- -1
+SELECT STRCMP("sameLength","sameLength"); -- 0
+SELECT STRCMP("shortString", "longerString"); -- 1
