@@ -187,10 +187,16 @@ SELECT CURRENT_DATE(); --eg 2018-06-25
 SELECT CURTIME(); --eg 14:09:46
 SELECT ADDDATE("2015-01-01", INTERVAL 5 DAY); --5 days are added & we get 2015-01-06
 
---Ouput to file
+--Output to file
 SELECT *
 FROM customers
 INTO OUTFILE 'C:\\myFolder\\customers.csv'
 FIELDS ENCLOSED BY '"' TERMINATED BY ',' ESCAPE BY '\\' --factor in NULL values
-LINES TERMINATED BY '\r\n'; --carraige return (jump back to left like typewriter) & line break
+LINES TERMINATED BY '\r\n'; --carriage return (jump back to left like typewriter) & line break
 
+--Import from file, (one above)
+LOAD DATA
+INFILE 'C:\\myFolder\\customers.csv'
+INTO TABLE myDatabase.customers
+FIELDS ENCLOSED BY '"' TERMINATED BY ',' ESCAPE BY '\\' --factor in NULL values
+LINES TERMINATED BY '\r\n';
