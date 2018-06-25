@@ -214,3 +214,8 @@ WHERE creditLimit = 0;
 SET @start = 9, @finish = 17; -- Both SET or SELECT work as do = or :=
 SELECT @start := 9, @finish := 17;
 SELECT * FROM work WHERE work_hours BETWEEN @start AND @finish;
+
+--Disable safe update mode (a mode than can force you to use WHERE clauses before deleting stuff)
+SET SQL_SAFE_UPDATES=0;
+--Renable safe update mode
+SET SQL_SAFE_UPDATES=1;
