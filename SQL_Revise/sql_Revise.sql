@@ -229,3 +229,11 @@ SELECT FORMAT(199.9999, 2); --200.00
 --RAND, random number
 SELECT RAND(14); --generate a random number & use the number 14 as a seed to make it more random
 
+--Find out which tables specific columns live in
+SELECT DISTINCT table_name, column_name FROM information_schema.columns WHERE column_name IN ('the_field_something_id') AND table_schema ='the_database'; 
+
+--Correct paths in database when changing folder locations between Dev and Live
+UPDATE volume SET system_path = REPLACE (system_path, 'oldPathName', 'newPathName');
+
+--Smart insertion means using wildcards so Dev & Live paths no longer an issue
+INSERT INTO tag (tag_id, some_predictable_number, file_id) SELECT Null,some_predictable_number,file_id FROM file WHERE full_pathname LIKE '/someFolderPath/aChildFolder/%';
