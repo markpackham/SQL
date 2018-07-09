@@ -237,3 +237,7 @@ UPDATE volume SET system_path = REPLACE (system_path, 'oldPathName', 'newPathNam
 
 --Smart insertion means using wildcards so Dev & Live paths no longer an issue
 INSERT INTO tag (tag_id, some_predictable_number, file_id) SELECT Null,some_predictable_number,file_id FROM file WHERE full_pathname LIKE '/someFolderPath/aChildFolder/%';
+
+--Concat users with multiple roles & make sure to use  a GROUP BY
+GROUP_CONCAT(DISTINCT role)
+GROUP BY user_id
