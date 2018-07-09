@@ -241,3 +241,9 @@ INSERT INTO tag (tag_id, some_predictable_number, file_id) SELECT Null,some_pred
 --Concat users with multiple roles & make sure to use  a GROUP BY
 GROUP_CONCAT(DISTINCT role)
 GROUP BY user_id
+
+
+--An insertion query involving 3 tables
+INSERT INTO table3 (tag_id, theNumber10)
+SELECT tag_id,10 FROM table2 WHERE file_id IN
+(SELECT file_id FROM table1 WHERE full_pathname LIKE '/something/%/somethinFolder/%');
