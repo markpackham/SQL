@@ -247,3 +247,23 @@ GROUP BY user_id
 INSERT INTO table3 (tag_id, theNumber10)
 SELECT tag_id,10 FROM table2 WHERE file_id IN
 (SELECT file_id FROM table1 WHERE full_pathname LIKE '/something/%/somethinFolder/%');
+
+
+--Describe the meta info on a table or field, DESC is the short version
+DESCRIBE SELECT email FROM sfsuser;
++----+-------------+---------+------------+-------+---------------+-------+---------+------+------+----------+-------------+
+| id | select_type | table   | partitions | type  | possible_keys | key   | key_len | ref  | rows | filtered | Extra       |
++----+-------------+---------+------------+-------+---------------+-------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | sfsuser | NULL       | index | NULL          | email | 291     | NULL | 8680 |   100.00 | Using index |
++----+-------------+---------+------------+-------+---------------+-------+---------+------+------+----------+-------------+
+
+DESC role;
++-------------+------------------+------+-----+---------+----------------+
+| Field       | Type             | Null | Key | Default | Extra          |
++-------------+------------------+------+-----+---------+----------------+
+| role_id     | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(75)      | YES  | UNI | NULL    |                |
+| description | varchar(255)     | YES  |     | NULL    |                |
++-------------+------------------+------+-----+---------+----------------+
+
+
