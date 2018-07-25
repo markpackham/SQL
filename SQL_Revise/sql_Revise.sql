@@ -270,3 +270,9 @@ DESC role;
 --Remove table lines from mysql's console, handy when doing selections to copy and paste data
 mysql -s -n -u root myDatabase
 
+
+--Disable Mysql "incompatible with sql_mode=only_full_group_by"
+
+SET sql_mode = '';
+
+
