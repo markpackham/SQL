@@ -267,3 +267,6 @@ DESC role;
 +-------------+------------------+------+-----+---------+----------------+
 
 
+--Remove table lines from mysql's console, handy when doing selections to copy and paste data
+mysql -s -n -u root myDatabase
+
