@@ -283,3 +283,6 @@ SELECT CONCAT("ab", "cd", "ef", "g") AS alphaBet;
 --GROUP_CONCAT (handy for adding "," to SELECT stuff in in one query for use in a very long IN() statement via another
 SELECT GROUP_CONCAT(someId) FROM someTable WHERE someThing IS NULL;
 /*You might get output like this 257502,257512,343882,348152,368371,368431,515981,547481 which you can copy & paste into a very long IN() statement later */
+
+--Boost GROUP_CONCAT limit so you don't miss out on stuff
+SET SESSION group_concat_max_len = 100000;
