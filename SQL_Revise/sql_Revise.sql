@@ -174,6 +174,9 @@ SELECT IF(100000>2, "YES", "NO"); --returns YES
 --IFNULL returns an alternative value if an expression is NULL eg 0
 SELECT IFNULL(diploma, 0) FROM customers; --it is possible no customers have academic diplomas
 
+--- Replace null columns with dashes in database selects
+SELECT IFNULL(aFieldThatMightBeNull, '-')
+
 --ISNULL If expression is a NULL value, the ISNULL() function returns 1. Otherwise, it returns 0.
 SELECT ISNULL("Return 0 I am not null"); --returns 0
 SELECT ISNULL(""); --returns 0, strangely this is not Null
@@ -286,3 +289,4 @@ SELECT GROUP_CONCAT(someId) FROM someTable WHERE someThing IS NULL;
 
 --Boost GROUP_CONCAT limit so you don't miss out on stuff
 SET SESSION group_concat_max_len = 100000;
+
