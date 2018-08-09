@@ -292,6 +292,9 @@ SET SESSION group_concat_max_len = 100000;
 
 
 --Doing a MySQL dump in bash
-
 sudo mysqldump --insert-ignore --no-create-info --compact --user=root aDatabase aTable  --where="file_id in (1,2,3)" > myDumpFile.sql
+
+--MySQL import script
+mysql -u root aDatabase < /tmp/aScript.sql
+
 
