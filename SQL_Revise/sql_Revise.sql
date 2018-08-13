@@ -334,3 +334,16 @@ mysql> DESC company;
 +--------------+------------------+------+-----+---------+----------------+
 17 rows in set (0.00 sec)
 
+-- Find out my database's hostname
+mysql> SHOW VARIABLES WHERE Variable_name = 'hostname';
++---------------+---------------------+
+| Variable_name | Value               |
++---------------+---------------------+
+| hostname      | mark-Latitude-E5550 |
++---------------+---------------------+
+1 row in set (0.01 sec)
+
+--Find database in use
+SELECT database();
+
+
