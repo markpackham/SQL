@@ -297,4 +297,6 @@ sudo mysqldump --insert-ignore --no-create-info --compact --user=root aDatabase 
 --MySQL import script
 mysql -u root aDatabase < /tmp/aScript.sql
 
-
+-- Set the character code in the terminal to UTF 8
+mysql> \C utf8
+Charset changed
