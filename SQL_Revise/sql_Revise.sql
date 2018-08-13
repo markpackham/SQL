@@ -300,3 +300,37 @@ mysql -u root aDatabase < /tmp/aScript.sql
 -- Set the character code in the terminal to UTF 8
 mysql> \C utf8
 Charset changed
+
+-- Explain vs Describe
+mysql> EXPLAIN SELECT * FROM company;
++----+-------------+---------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table   | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+---------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | company | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 1047 |   100.00 | NULL  |
++----+-------------+---------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> DESC company;
++--------------+------------------+------+-----+---------+----------------+
+| Field        | Type             | Null | Key | Default | Extra          |
++--------------+------------------+------+-----+---------+----------------+
+| company_id   | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(64)      | YES  | UNI | NULL    |                |
+| address1     | varchar(40)      | YES  |     | NULL    |                |
+| address2     | varchar(40)      | YES  |     | NULL    |                |
+| address3     | varchar(40)      | YES  |     | NULL    |                |
+| town         | varchar(32)      | YES  |     | NULL    |                |
+| county       | varchar(24)      | YES  |     | NULL    |                |
+| country      | varchar(24)      | YES  |     | NULL    |                |
+| postcode     | varchar(16)      | YES  |     | NULL    |                |
+| phone        | varchar(24)      | YES  |     | NULL    |                |
+| fax          | varchar(24)      | YES  |     | NULL    |                |
+| isdn         | varchar(24)      | YES  |     | NULL    |                |
+| category     | varchar(24)      | YES  |     | NULL    |                |
+| description  | text             | YES  |     | NULL    |                |
+| active       | tinyint(1)       | NO   |     | NULL    |                |
+| deleted      | tinyint(1)       | NO   |     | NULL    |                |
+| territory_id | int(10) unsigned | YES  | MUL | NULL    |                |
++--------------+------------------+------+-----+---------+----------------+
+17 rows in set (0.00 sec)
+
