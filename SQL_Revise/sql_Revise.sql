@@ -347,3 +347,8 @@ mysql> SHOW VARIABLES WHERE Variable_name = 'hostname';
 SELECT database();
 
 
+-- Load into Database from a typical .csv file
+mysql> load data local infile '/home/mark/Downloads/transactions.csv' into table transactions fields terminated by ',' lines terminated by '\n';
+
+
+
