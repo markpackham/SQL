@@ -351,4 +351,6 @@ SELECT database();
 mysql> load data local infile '/home/mark/Downloads/transactions.csv' into table transactions fields terminated by ',' lines terminated by '\n';
 
 
+--Case-sensitive query, via BINARY operator, which forces a byte by byte comparison
+SELECT * FROM aTable WHERE BINARY aColumn = 'CASE_SENSATIVE_value'
 
