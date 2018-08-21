@@ -352,5 +352,11 @@ mysql> load data local infile '/home/mark/Downloads/transactions.csv' into table
 
 
 --Case-sensitive query, via BINARY operator, which forces a byte by byte comparison
-SELECT * FROM aTable WHERE BINARY aColumn = 'CASE_SENSATIVE_value'
+SELECT * FROM aTable WHERE BINARY aColumn = 'CASE_SENSATIVE_value';
+
+
+--Combine an Insertion with a Select to easily update a table
+/* We want everything with a territory_id of 1 to also have a territory_id of 2 & 3 */
+INSERT INTO aTable (territory_id,user_id) select 2, user_id from aTable where territory_id = 1;
+INSERT INTO aTable (territory_id,user_id) select 3, user_id from aTable where territory_id = 1;
 
