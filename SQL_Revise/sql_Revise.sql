@@ -1,3 +1,6 @@
+-- list of active threads in MySQL
+SHOW processlist;
+
 --INNER JOIN is the DEFAULT, you don't need to write INNER
 SELECT tableA.aID, tableB.names
 FROM tableA
