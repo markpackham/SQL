@@ -346,6 +346,11 @@ mysql> SHOW VARIABLES WHERE Variable_name = 'hostname';
 +---------------+---------------------+
 1 row in set (0.01 sec)
 
+
+--With Full you can see column collation, comments + privileges 
+SHOW FULL COLUMNS myTable;
+
+
 --Find database in use
 SELECT database();
 
