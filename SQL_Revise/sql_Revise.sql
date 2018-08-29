@@ -1,10 +1,20 @@
 -- list of active threads in MySQL
 SHOW processlist;
 
+--When you get Warning messages do this
+SHOW WARNINGS\G
+
+
 --INNER JOIN is the DEFAULT, you don't need to write INNER
 SELECT tableA.aID, tableB.names
 FROM tableA
 JOIN tableB ON tableA.aID = tableB.foreignKey
+
+
+--LIMIT, 
+--get rows 10 to 20 (like arrays we count from 0 not 1)
+SELECT * FROM myTable LIMIT 9,10;  
+
 
 /*
 Target colums of the same name
