@@ -396,3 +396,6 @@ substring_index(substring_index(long_url, '/', 9), '/', -1)
 almostEndofUrl
 
 
+--Dump collection of zipped .sql files into a database
+zcat myDatabaseFiles/*.sql.gz | mysql -u root myDatabase
+
