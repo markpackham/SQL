@@ -15,6 +15,12 @@ JOIN tableB ON tableA.aID = tableB.foreignKey
 --get rows 10 to 20 (like arrays we count from 0 not 1)
 SELECT * FROM myTable LIMIT 9,10;  
 
+--Show every file with a Euro Symbol, € in it's name
+--get the UTF-8 character list from there https://www.fileformat.info/info/charset/UTF-8/list.htm
+SELECT name FROM file WHERE hex(name) LIKE "%C280%";
+
+--Replace Euro Symbol, € with British Pound Sterling, £
+UPDATE file SET name = REPLACE(name, unhex('C280'), unhex('C2A3'));
 
 /*
 Target colums of the same name
@@ -310,7 +316,7 @@ sudo mysqldump --insert-ignore --no-create-info --compact --user=root aDatabase 
 --MySQL import script
 mysql -u root aDatabase < /tmp/aScript.sql
 
--- Set the character code in the terminal to UTF 8
+-- Set the character code in the terminal to UTF 8, do it again to toggle on and off
 mysql> \C utf8
 Charset changed
 
@@ -377,4 +383,16 @@ SELECT * FROM aTable WHERE BINARY aColumn = 'CASE_SENSATIVE_value';
 /* We want everything with a territory_id of 1 to also have a territory_id of 2 & 3 */
 INSERT INTO aTable (territory_id,user_id) select 2, user_id from aTable where territory_id = 1;
 INSERT INTO aTable (territory_id,user_id) select 3, user_id from aTable where territory_id = 1;
+
+
+--Extracting part of a url
+substring_index(substring_index(long_url, '/', 9), '/', -1)
+
+--takes this :
+
+/ulrStart/ulrPart/ulrPart/ulrPart/ulrPart/ulrPart/ulrPart/ulrPart/almostEndofUrl/EndOfUrl.png
+
+--and extracts this :
+almostEndofUrl
+
 
