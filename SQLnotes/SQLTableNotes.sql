@@ -220,3 +220,98 @@ CASE statements can be used inside aggregates (like SUM() and COUNT()) to provid
 --select the date and time of all deliveries in the baked_goods table using the column delivery_time
 SELECT DATETIME(delivery_time)
 FROM baked_goods;
+--select just Date or just Time
+SELECT DATE(manufacture_time), count(*) as count_baked_goods
+FROM baked_goods
+GROUP BY DATE(manufacture_time);
+
+SELECT TIME(manufacture_time), count(*) as count_baked_goods
+FROM baked_goods
+GROUP BY TIME(manufacture_time);
+
+--Find the number of baked goods by date of delivery
+SELECT DATE(delivery_time), count(*) as count_baked_goods
+FROM baked_goods
+GROUP BY DATE(delivery_time);
+
+--Adding time in SQLite
+DATETIME(time1, '+3 hours', '40 minutes', '2 days');
+--Would return a time 3 hours, 20 minutes, and 2 days after time1
+
+--each dessert in our baked_goods table is inspected 2 hours, 30 minutes, and 1 day after the manufacture time. 
+SELECT DATETIME(manufacture_time, '+2 hours', '30 minutes', '1 day') as inspection_time
+FROM baked_goods;
+
+--Each of the baked goods is packaged by Baker’s Market exactly five hours, twenty minutes, and two days after the delivery (designated by delivery_time)
+SELECT DATETIME(delivery_time, '+5 hours', '20 minutes', '2 days') as package_time
+FROM baked_goods;
+
+
+
+--NUMBERS
+/*
+common SQLite mathematical functions are included below that take numeric data types as inputs:
+
+SELECT (number1 + number2);: Returns the sum of two numbers. Similar, SQL can be used for subtraction, multiplication, and division.
+SELECT CAST(number1 AS REAL) / number3;: Returns the result as a real number by casting one of the values as a real number, rather than an integer.
+SELECT ROUND(number, precision);: Returns the numeric value rounded off to the next value specified.
+*/
+
+--make sure that each ingredient cost is rounded to four decimal places rather than two, to account for currency fluctuations.
+SELECT ROUND(ingredients_cost, 4) as rounded_cost
+FROM baked_goods;
+
+--Find the bakery’s distance from the market rounded to two decimal places
+SELECT ROUND(distance, 2) as distance_from_market
+FROM bakeries;
+
+
+--MAX & MIN
+--use the MAX function to determine the overall greatest value of cost for each item
+SELECT id, MAX(ingredients_cost, packaging_cost)
+FROM baked_goods;
+--Find Max cook & cool down time
+SELECT id, MAX(cook_time, cool_down_time)
+FROM baked_goods;
+--Find Minx cook & cool down time
+SELECT id, MIN(cook_time, cool_down_time)
+FROM baked_goods;
+
+
+
+--Strings
+--A common use case for string manipulation in SQL is concatenation of strings. In SQLite, this is written as
+SELECT string1 || ' ' || string2;
+--the bakeries table contains both city and state columns. In order to create a route for these columns, 
+SELECT city || ' ' || state as location
+FROM bakeries;
+--Combine the first_name and last_name columns from the bakeries table as the full_name
+SELECT first_name || ' ' || last_name as full_name
+FROM bakeries;
+
+
+--Replace
+REPLACE(string,from_string,to_string)
+
+SELECT id, REPLACE(ingredients,'_',' ') as item_ingredients
+from baked_goods;
+
+--enriched_flour appears in the ingredients list, we’d like to replace it with just flour
+SELECT REPLACE(ingredients,'enriched_',' ') as item_ingredients
+FROM baked_goods;
+
+/*
+Date Functions:
+
+DATETIME; Returns the date and time of the column specified. This can be modified to return only the date or only the time.
+DATETIME(time1, +X hours, Y minutes, Z days): Increments the specificed column by a given number of hours, minutes, or days.
+Numeric Functions:
+
+(number1 + number2);: Returns the sum of two numbers, or other mathematical operations, accordingly.
+CAST(number1 AS REAL) / number2;: Returns the result as a real number by casting one of numeric inputs as a real number
+ROUND(number, precision);: Returns the numeric value rounded off to the next value specified.
+String Functions:
+
+'string1' || ' ' || 'string2';: Concatenates string1 and string 2, with a space between.
+REPLACE(string,from_string,to_string): Returns the string with all occurrences of the string from_string replaced by the string to_string.
+*/
