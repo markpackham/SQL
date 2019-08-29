@@ -1,0 +1,100 @@
+Daily Counts
+
+To get the Daily Metrics we need the date. Most dates in databases are timestamps, which have hours and minutes, 
+as well as the year, month, and day. Timestamps look like 2015-01-05 14:43:31, while dates are the first part: 2015-01-05.
+
+select date(ordered_at)
+from orders;
+
+
+
+To count orders by their dates, we’ll use the date and count functions and pair them with the group by clause. 
+Together this will count the records in the table, grouped by date.
+
+select date(ordered_at), count(1)
+from orders
+group by 1
+order by 1;
+
+
+
+What’s the daily revenue from customers ordering kale smoothies?
+
+select date(ordered_at), round(sum(amount_paid), 2)
+from orders
+    join order_items on 
+      orders.id = order_items.order_id
+where name = 'kale-smoothie'
+group by 1
+order by 1;
+
+
+
+To get the percent of revenue that each item represents, we need to know the total revenue of each item. 
+We will later divide the per-item total with the overall total revenue.
+
+select name, round(sum(amount_paid) /
+  (select sum(amount_paid) from order_items) * 100.0, 2) as pct
+from order_items
+group by 1
+order by 2 desc;
+
+
+
+Case statement layout
+
+case {condition}
+  when {value1} then {result1}
+  when {value2} then {result2}
+  else {result3}
+end
+
+
+
+Group categories
+
+select
+  case name
+    when 'kale-smoothie'    then 'smoothie'
+    when 'banana-smoothie'  then 'smoothie'
+    when 'orange-juice'     then 'drink'
+    when 'soda'             then 'drink'
+    when 'blt'              then 'sandwich'
+    when 'grilled-cheese'   then 'sandwich'
+    when 'tikka-masala'     then 'dinner'
+    when 'chicken-parm'     then 'dinner'
+    else 'other'
+  end as category, round(1.0 * sum(amount_paid) /
+    (select sum(amount_paid) from order_items) * 100, 2) as pct
+from order_items
+group by 1
+order by 2 desc;
+
+
+
+Reorder Rates
+
+ratio of the total number of orders to the number of people making those orders. 
+A higher ratio means most of the orders are reorders. A lower ratio means more of the orders are first purchases.
+
+Counting the total orders per product is straightforward. We count the distinct order_ids in the order_items table.
+To get that information, we need to join in the orders table and count unique values in the delivered_to field, and sort by the reorder_rate.
+
+select name, round(1.0 * count(distinct order_id) /
+  count(distinct orders.delivered_to), 2) as reorder_rate
+from order_items
+  join orders on
+    orders.id = order_items.order_id
+group by 1
+order by 2 desc;
+
+
+
+Summary
+
+Data aggregation is the grouping of data in summary form.
+Daily Count is the count of orders in a day.
+Daily Revenue Count is the revenue on orders per day.
+Product Sum is the total revenue of a product.
+Subqueries can be used to perform complicated calculations and create filtered or aggregate tables on the fly.
+Reorder Rate is the ratio of the total number of orders to the number of people making orders.
